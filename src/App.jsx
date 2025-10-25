@@ -8,19 +8,18 @@ import Lanyard from "./components/Lanyard/Lanyard";
 import GlassIcons from "./components/GlassIcons/GlassIcons";
 import { listTools, listProyek } from "./data";
 import ChromaGrid from "./components/ChromaGrid/ChromaGrid";
-import ProjectModal from "./components/ProjectModal/ProjectModal"; // <-- IMPORT MODAL
+import ProjectModal from "./components/ProjectModal/ProjectModal";
 import Aurora from "./components/Aurora/Aurora";
-import AOS from 'aos';
+import AOS from "aos";
 import ChatRoom from "./components/ChatRoom";
-import 'aos/dist/aos.css'; // You can also use <link> for styles
-// ..
+import "aos/dist/aos.css";
+
 AOS.init();
 
 function App() {
   const aboutRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
-
-  const [selectedProject, setSelectedProject] = useState(null); // null = modal tertutup
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
@@ -29,14 +28,12 @@ function App() {
   const handleCloseModal = () => {
     setSelectedProject(null);
   };
-  // -------------------------
 
   useEffect(() => {
     const isReload =
       performance.getEntriesByType("navigation")[0]?.type === "reload";
 
     if (isReload) {
-      // Ambil path tanpa hash
       const baseUrl = window.location.origin + "/portofolio/";
       window.location.replace(baseUrl);
     }
@@ -62,248 +59,385 @@ function App() {
 
   return (
     <>
-      <div className="absolute top-0 left-0 w-full h-full -z-10 ">
+      {/* Enhanced Aurora Background */}
+      <div className="absolute top-0 left-0 w-full h-full -z-10">
         <Aurora
-          colorStops={["#577870", "#1F97A6", "#127B99"]}
-          blend={0.5}
-          amplitude={1.0}
-          speed={0.5}
+          colorStops={["#7e22ce", "#06b6d4", "#3b82f6", "#8b5cf6"]}
+          blend={0.7}
+          amplitude={1.2}
+          speed={0.3}
         />
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-cyan-900/5 to-blue-900/10"></div>
       </div>
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="hero grid md:grid-cols-2 items-center pt-10 xl:gap-0 gap-6 grid-cols-1">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Hero Section - Enhanced */}
+        <div className="hero grid md:grid-cols-2 items-center pt-20 xl:gap-8 gap-6 grid-cols-1">
           <div className="animate__animated animate__fadeInUp animate__delay-3s">
-            <div className="flex items-center gap-3 mb-6 bg bg-zinc-800 w-fit p-4 rounded-2xl">
-              <img src="./assets/faris1.png" className="w-10 rounded-md" />
-              <q>Avoid or just undertake it</q>
+            {/* Quote Card - Enhanced */}
+            <div className="flex items-center gap-3 mb-8 bg-gradient-to-r from-zinc-800 to-zinc-900/80 backdrop-blur-sm w-fit p-4 rounded-2xl border border-zinc-700/50 shadow-lg">
+              <img
+                src="./assets/diyan.png"
+                className="w-12 h-12 rounded-lg border-2 border-purple-500/30"
+              />
+              <q className="text-zinc-200 font-medium italic">
+                I don’t just code — I create experiences that speak.
+              </q>
             </div>
-            <h1 className="text-5xl font-bold mb-6">
-              <ShinyText text="Hi I'm Faris Edrik Prayoga" disabled={false} speed={3} className='custom-class' />
+
+            <h1 className="text-6xl font-bold mb-8">
+              <ShinyText
+                text="Hi I'm Diyan"
+                disabled={false}
+                speed={3}
+                className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent"
+              />
             </h1>
+
             <BlurText
               text="A passionate application and web developer dedicated to crafting modern, high-performance digital experiences through innovative and user-friendly solutions."
               delay={150}
               animateBy="words"
               direction="top"
-              className=" mb-6"
+              className="text-xl text-zinc-300 leading-relaxed mb-8"
             />
-            <div className="flex items-center sm:gap-4 gap-2">
-              <a 
-                href="./assets/CV.pdf" 
-                download="Faris_Edrik_Prayoga_CV.pdf" 
-                className="font-semibold bg-[#1a1a1a] p-4 px-6 rounded-full border border-gray-700 hover:bg-[#222] transition-colors"
+
+            {/* CTA Buttons - Enhanced */}
+            <div className="flex items-center sm:gap-6 gap-4 flex-wrap">
+              <a
+                href="./assets/CV.pdf"
+                download="Faris_Edrik_Prayoga_CV.pdf"
+                className="font-semibold bg-gradient-to-r from-purple-600 to-cyan-600 p-4 px-8 rounded-full border border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
               >
-                <ShinyText text="Download CV" disabled={false} speed={3} className="custom-class" />
+                <ShinyText
+                  text="Download CV"
+                  disabled={false}
+                  speed={3}
+                  className="text-white"
+                />
               </a>
 
-              <a href="#project" className="font-semibold bg-[#1a1a1a] p-4 px-6 rounded-full border border-gray-700 hover:bg-[#222] transition-colors">
-                <ShinyText text="Explore My Projects" disabled={false} speed={3} className="custom-class" />
+              <a
+                href="#project"
+                className="font-semibold bg-zinc-800/80 backdrop-blur-sm p-4 px-8 rounded-full border border-zinc-700 hover:bg-zinc-700/80 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+              >
+                <ShinyText
+                  text="Explore My Projects"
+                  disabled={false}
+                  speed={3}
+                  className="text-white"
+                />
               </a>
             </div>
-
           </div>
-          <div className="md:ml-auto animate__animated animate__fadeInUp animate__delay-4s">
+
+          {/* Profile Card Section */}
+          <div className="md:ml-auto animate__animated animate__fadeInUp animate__delay-4s flex justify-center">
             <ProfileCard
-              name="Faris Edrik P"
+              name="Diyan"
               title="Web Developer"
-              handle="farisedrikp"
+              handle="d1yan.26"
               status="Online"
               contactText="Contact Me"
-              avatarUrl="./assets/faris.png"
+              avatarUrl="./assets/diyan.png"
               showUserInfo={true}
               enableTilt={true}
               enableMobileTilt={false}
-              onContactClick={() => console.log('Contact clicked')}
+              onContactClick={() =>
+                document
+                  .getElementById("contact")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             />
           </div>
         </div>
-        {/* tentang */}
-        <div className="mt-15 mx-auto w-full max-w-[1600px] rounded-3xl border-[5px] border-violet-500/40 shadow-[0_0_30px_rgba(168,85,247,0.4)] bg-gradient-to-br from-[#0a0a0a] via-[#111111] to-[#1a1a1a] p-6" id="about">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-10 pt-0 px-8" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-            <div className="basis-full md:basis-7/12 pr-0 md:pr-8 border-b md:border-b-0 md:border-r border-violet-500/30">
-              {/* Kolom kiri */}
+
+        {/* About Section - Enhanced */}
+        <div
+          className="mt-32 mx-auto w-full max-w-[1600px] rounded-3xl border border-purple-500/30 shadow-[0_0_50px_rgba(168,85,247,0.3)] bg-gradient-to-br from-zinc-900/80 via-zinc-900/60 to-zinc-800/80 backdrop-blur-sm p-8"
+          id="about"
+        >
+          <div
+            className="flex flex-col md:flex-row items-center justify-between gap-12 pt-4 px-4"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-once="true"
+          >
+            <div className="basis-full md:basis-7/12 pr-0 md:pr-12 border-b md:border-b-0 md:border-r border-purple-500/20 pb-8 md:pb-0">
               <div className="flex-1 text-left">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-5">
-                  About Me
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
+                  About{" "}
+                  <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                    Me
+                  </span>
                 </h2>
 
                 <BlurText
-                  text="I’m Faris Edrik Prayoga, a full-stack developer passionate about building modern, high-performance applications with an intuitive user experience. I enjoy working with the latest technologies like Artificial Intelligence, Machine Learning, and cloud-based development, blending creativity with precision to deliver impactful solutions. With over three years of experience and more than 20 completed projects, I’m committed to helping users and businesses grow in the digital era through functional, aesthetic, and scalable digital products."
+                  text="I'm Diyan, a passionate web developer and Software Engineering student at Politeknik Negeri Indramayu. I love creating modern, responsive, and high-quality web applications that combine clean design with powerful functionality. I’m constantly learning and exploring new technologies to build efficient, user-friendly digital solutions. My goal is to keep improving my skills and contribute to impactful projects that make technology more accessible and meaningful for everyone."
                   delay={150}
                   animateBy="words"
                   direction="top"
-                  className="text-base md:text-lg leading-relaxed mb-10 text-gray-300"
+                  className="text-lg md:text-xl leading-relaxed mb-12 text-zinc-300"
                 />
 
-                <div className="flex flex-col sm:flex-row items-center sm:justify-between text-center sm:text-left gap-y-8 sm:gap-y-0 mb-4 w-full">
-                  <div>
-                    <h1 className="text-3xl md:text-4xl mb-1">
-                      20<span className="text-violet-500">+</span>
-                    </h1>
-                    <p>Project Finished</p>
-                  </div>
-                  <div>
-                    <h1 className="text-3xl md:text-4xl mb-1">
-                      3<span className="text-violet-500">+</span>
-                    </h1>
-                    <p>Years of Experience</p>
-                  </div>
-                  <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600" data-aos-once="true">
-                    <h1 className="text-3xl md:text-4xl mb-1">
-                      3.81<span className="text-violet-500">/4.00</span>
-                    </h1>
-                    <p>GPA</p>
-                  </div>
+                {/* Stats - Enhanced */}
+                <div className="flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-8 sm:gap-4 mb-8 w-full">
+                  {[
+                    {
+                      number: "5+",
+                      label: "Projects Finished",
+                      color: "from-purple-400 to-pink-400",
+                    },
+                    {
+                      number: "3+",
+                      label: "Years Experience",
+                      color: "from-cyan-400 to-blue-400",
+                    },
+                    {
+                      number: "***",
+                      label: "GPA Score",
+                      color: "from-green-400 to-emerald-400",
+                    },
+                  ].map((stat, index) => (
+                    <div key={index} className="text-center">
+                      <h1 className="text-4xl md:text-5xl font-bold mb-2">
+                        <span
+                          className={`bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}
+                        >
+                          {stat.number}
+                        </span>
+                      </h1>
+                      <p className="text-zinc-400 font-medium">{stat.label}</p>
+                    </div>
+                  ))}
                 </div>
-
 
                 <ShinyText
                   text="Working with heart, creating with mind."
                   disabled={false}
                   speed={3}
-                  className="text-sm md:text-base text-violet-400"
+                  className="text-lg text-purple-400 font-light italic"
                 />
               </div>
             </div>
 
-            {/* Kolom kanan */}
-            <div className="basis-full md:basis-5/12 pl-0 md:pl-8 overflow-hidden max-w-full flex justify-center ">
+            {/* Lanyard Section */}
+            <div className="basis-full md:basis-5/12 pl-0 md:pl-12 overflow-hidden max-w-full flex justify-center">
               <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
             </div>
           </div>
-
         </div>
-        <div className="tools mt-32">
-          <h1 className="text-4xl/snug font-bold mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true" >Tools & Technologies</h1>
-          <p className="w-2/5 text-base/loose opacity-50" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" data-aos-once="true">My Profesional Skills</p>
-          <div className="tools-box mt-14 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
 
+        {/* Tools & Technologies - Enhanced */}
+        <div className="tools mt-32">
+          <div className="text-center mb-16">
+            <h1
+              className="text-5xl font-bold mb-6"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-once="true"
+            >
+              Tools &{" "}
+              <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                Technologies
+              </span>
+            </h1>
+            <p
+              className="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="300"
+              data-aos-once="true"
+            >
+              My professional toolkit for crafting exceptional digital
+              experiences
+            </p>
+          </div>
+
+          <div className="tools-box grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
             {listTools.map((tool) => (
               <div
-                key={tool.id} data-aos="fade-up" data-aos-duration="1000" data-aos-delay={tool.dad} data-aos-once="true"
-                className="flex items-center gap-4 p-4 border border-zinc-700 rounded-xl bg-zinc-900/60 backdrop-blur-md hover:bg-zinc-800/80 transition-all duration-300 group shadow-lg"
+                key={tool.id}
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay={tool.dad}
+                data-aos-once="true"
+                className="flex items-center gap-4 p-6 border border-zinc-700/50 rounded-2xl bg-zinc-900/40 backdrop-blur-sm hover:bg-zinc-800/60 hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-500 group cursor-pointer"
               >
-                <img
-                  src={tool.gambar}
-                  alt="Tools Image"
-                  className="w-16 h-16 object-contain bg-zinc-800 p-2 rounded-lg group-hover:bg-zinc-900 transition-all duration-300"
-                />
+                <div className="relative">
+                  <img
+                    src={tool.gambar}
+                    alt="Tools Image"
+                    className="w-16 h-16 object-contain bg-zinc-800 p-3 rounded-xl group-hover:bg-zinc-700 transition-all duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 rounded-xl group-hover:opacity-100 opacity-0 transition-opacity duration-300"></div>
+                </div>
                 <div className="flex flex-col overflow-hidden">
                   <div className="truncate">
                     <ShinyText
                       text={tool.nama}
                       disabled={false}
                       speed={3}
-                      className="text-lg font-semibold block"
+                      className="text-lg font-semibold block text-white"
                     />
                   </div>
-                  <p className="text-sm text-zinc-400 truncate">{tool.ket}</p>
+                  <p className="text-sm text-zinc-400 truncate mt-1">
+                    {tool.ket}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        {/* tentang */}
 
-        {/* Proyek */}
-        <div className="proyek mt-32 py-10" id="project" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true"></div>
-        <h1 className="text-center text-4xl font-bold mb-2" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">Project</h1>
-        <p className="text-base/loose text-center opacity-50" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" data-aos-once="true">Showcasing a selection of projects that reflect my skills, creativity, and passion for building meaningful digital experiences.</p>
-        <div className="proyek-box mt-14" >
+        {/* Projects Section - Enhanced */}
+        <div className="proyek mt-32 py-12" id="project">
+          <div className="text-center mb-16">
+            <h1
+              className="text-5xl font-bold mb-6"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-once="true"
+            >
+              Featured{" "}
+              <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                Projects
+              </span>
+            </h1>
+            <p
+              className="text-xl text-zinc-400 max-w-3xl mx-auto leading-relaxed"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="300"
+              data-aos-once="true"
+            >
+              Showcasing a selection of projects that reflect my skills,
+              creativity, and passion for building meaningful digital
+              experiences.
+            </p>
+          </div>
 
-          <div style={{ height: 'auto', position: 'relative' }} data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" data-aos-once="true" >
-            <ChromaGrid
-              items={listProyek}
-              onItemClick={handleProjectClick} // Kirim fungsi untuk handle klik
-              radius={500}
-              damping={0.45}
-              fadeOut={0.6}
-              ease="power3.out"
-            />
+          <div className="proyek-box">
+            <div
+              style={{ height: "auto", position: "relative" }}
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="400"
+              data-aos-once="true"
+            >
+              <ChromaGrid
+                items={listProyek}
+                onItemClick={handleProjectClick}
+                radius={500}
+                damping={0.45}
+                fadeOut={0.6}
+                ease="power3.out"
+              />
+            </div>
           </div>
         </div>
-        {/* Proyek */}
 
+        {/* Contact Section - Enhanced */}
+        <div className="kontak mt-32 py-12" id="contact">
+          <div className="text-center mb-16">
+            <h1
+              className="text-5xl font-bold mb-6"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-once="true"
+            >
+              Get In{" "}
+              <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                Touch
+              </span>
+            </h1>
+            <p
+              className="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="300"
+              data-aos-once="true"
+            >
+              Let's discuss your project or just say hello. I'm always open to
+              new opportunities and conversations.
+            </p>
+          </div>
 
-        {/* Kontak */}
-        <div className="kontak mt-32 sm:p-10 p-0" id="contact">
-          <h1
-            className="text-4xl mb-2 font-bold text-center"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-once="true"
-          >
-            Contact & Chat
-          </h1>
-          <p
-            className="text-base/loose text-center mb-10 opacity-50"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="300"
-            data-aos-once="true"
-          >
-            Get in touch with me or chat in real-time
-          </p>
-
-          {/* Container dua kolom */}
-          <div className="flex flex-col md:flex-row gap-8">
-            {/* Chat Room di kiri */}
-            <div className="flex-1 bg-zinc-800 p-6 rounded-md" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" data-aos-once="true">
+          <div className="flex flex-col lg:flex-row gap-8 max-w-7xl mx-auto">
+            {/* Chat Room - Enhanced */}
+            <div
+              className="flex-1"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="400"
+              data-aos-once="true"
+            >
               <ChatRoom />
             </div>
 
-            {/* Contact Form di kanan */}
+            {/* Contact Form - Enhanced */}
             <div className="flex-1">
               <form
                 action="https://formsubmit.co/rissoppa21@gmail.com"
                 method="POST"
-                className="bg-zinc-800 p-10 w-full rounded-md"
+                className="bg-zinc-900/40 backdrop-blur-sm border border-zinc-700/50 p-8 lg:p-12 rounded-2xl shadow-2xl"
                 autoComplete="off"
                 data-aos="fade-up"
                 data-aos-duration="1000"
                 data-aos-delay="500"
                 data-aos-once="true"
               >
-                <div className="flex flex-col gap-6">
-                  <div className="flex flex-col gap-2">
-                    <label className="font-semibold">Full Name</label>
+                <div className="flex flex-col gap-8">
+                  <div className="flex flex-col gap-3">
+                    <label className="font-semibold text-white text-lg">
+                      Full Name
+                    </label>
                     <input
                       type="text"
                       name="Name"
-                      placeholder="Input Name..."
-                      className="border border-zinc-500 p-2 rounded-md"
+                      placeholder="Your full name..."
+                      className="border border-zinc-600 bg-zinc-800/50 text-white p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-300 placeholder-zinc-400"
                       required
                     />
                   </div>
-                  <div className="flex flex-col gap-2">
-                    <label className="font-semibold">Email</label>
+
+                  <div className="flex flex-col gap-3">
+                    <label className="font-semibold text-white text-lg">
+                      Email
+                    </label>
                     <input
                       type="email"
                       name="Email"
-                      placeholder="Input Email..."
-                      className="border border-zinc-500 p-2 rounded-md"
+                      placeholder="your.email@example.com"
+                      className="border border-zinc-600 bg-zinc-800/50 text-white p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-300 placeholder-zinc-400"
                       required
                     />
                   </div>
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="message" className="font-semibold">Message</label>
+
+                  <div className="flex flex-col gap-3">
+                    <label
+                      htmlFor="message"
+                      className="font-semibold text-white text-lg"
+                    >
+                      Message
+                    </label>
                     <textarea
                       name="message"
                       id="message"
                       cols="45"
-                      rows="7"
-                      placeholder="Message..."
-                      className="border border-zinc-500 p-2 rounded-md"
+                      rows="6"
+                      placeholder="Tell me about your project or just say hello..."
+                      className="border border-zinc-600 bg-zinc-800/50 text-white p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all duration-300 placeholder-zinc-400 resize-none"
                       required
                     ></textarea>
                   </div>
-                  <div className="text-center">
+
+                  <div className="text-center pt-4">
                     <button
                       type="submit"
-                      className="font-semibold bg-[#1a1a1a] p-4 px-6 rounded-full w-full cursor-pointer border border-gray-700 hover:bg-[#222] transition-colors"
+                      className="font-semibold bg-gradient-to-r from-purple-600 to-cyan-600 p-4 px-8 rounded-full w-full cursor-pointer border border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105 text-white text-lg"
                     >
-                      <ShinyText text="Send" disabled={false} speed={3} className="custom-class" />
+                      Send Message
                     </button>
                   </div>
                 </div>
@@ -311,7 +445,6 @@ function App() {
             </div>
           </div>
         </div>
-        {/* Kontak */}
       </main>
 
       <ProjectModal
@@ -320,7 +453,7 @@ function App() {
         project={selectedProject}
       />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

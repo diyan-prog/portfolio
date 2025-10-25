@@ -4,12 +4,13 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBFgA6JpGqNBrWPfR-lKercjvy5Y6ky7zc",
-  authDomain: "webportofolio-8498b.firebaseapp.com",
-  projectId: "webportofolio-8498b",
-  storageBucket: "webportofolio-8498b.firebasestorage.app",
-  messagingSenderId: "543954266098",
-  appId: "1:543954266098:web:029e84a24273fd15d62d6b"
+ apiKey: "AIzaSyBoJrSQysYB-H7I0AIv8Dh_Uzh6yq54Oz8",
+  authDomain: "diyan-portfolio.firebaseapp.com",
+  projectId: "diyan-portfolio",
+  storageBucket: "diyan-portfolio.firebasestorage.app",
+  messagingSenderId: "364471384503",
+  appId: "1:364471384503:web:02553f445073328a5d1032",
+  measurementId: "G-SNCG3RGEJ1"
 };
 
 // Init Firebase
